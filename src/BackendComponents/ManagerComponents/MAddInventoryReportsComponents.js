@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import InventoryReportsService from '../../BackendService/ManagerService/InventoryReportsService'
-import {Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 const MAddInventoryReportsComponents = () => {
     const [maintainanceCost, setMaintainanceCost] = useState("")
@@ -10,7 +10,7 @@ const MAddInventoryReportsComponents = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const initialValues = { maintainanceCost: "", employeesalary: "", totalincome: "", totalProfit: "" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const [formValues] = useState(initialValues);
     const history = useHistory();
     const { id } = useParams();
 
@@ -49,7 +49,7 @@ const MAddInventoryReportsComponents = () => {
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [id]) //8
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -60,10 +60,9 @@ const MAddInventoryReportsComponents = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log("success");
         }
-    }, [formErrors]);
+    }, [formErrors , isSubmit]);
     const validate = (inventoryreports) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const name_regex = /^[a-zA-Z ]{2,30}$/i;
         if (!inventoryreports.maintainanceCost) {
             errors.maintainanceCost = "MaintainanceCost is required!";

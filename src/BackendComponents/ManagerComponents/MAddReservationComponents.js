@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {Link, useHistory, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory, useParams } from 'react-router-dom';
 import ReservationService from "../../BackendService/ManagerService/ReservationService"
 
 export const MAddReservationComponents = () => {
@@ -11,7 +11,7 @@ export const MAddReservationComponents = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const initialValues = { roomNo: "", children: "", adults: "", checkindate: "", checkoutdate: "" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const [formValues] = useState(initialValues);
     const history = useHistory();
     const { id } = useParams();
 
@@ -51,7 +51,7 @@ export const MAddReservationComponents = () => {
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [id])   //1
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -62,10 +62,9 @@ export const MAddReservationComponents = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log("success");
         }
-    }, [formErrors]);
+    }, [formErrors , isSubmit]); //6
     const validate = (reservation) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const name_regex = /^[a-zA-Z ]{2,30}$/i;
         if (!reservation.roomNo) {
             errors.roomNo = "RoomNo is required!";

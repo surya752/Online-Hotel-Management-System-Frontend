@@ -6,16 +6,16 @@ import { isEmail } from "validator";
 import "../components/loginbackground.css";
 import ManagerService from "../services/Manager.Service";
 import Navbar from "../Navbar";
-
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+import { Link } from "react-router-dom";
+// const required = value => {
+//   if (!value) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         This field is required!
+//       </div>
+//     );
+//   }
+// };
 
 const email = value => {
   if (!isEmail(value)) {
@@ -63,7 +63,7 @@ export default class ManagerRegister extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeCPassword = this.onChangeCPassword.bind(this); 
+    this.onChangeCPassword = this.onChangeCPassword.bind(this);
 
     this.state = {
       username: "",
@@ -109,11 +109,11 @@ export default class ManagerRegister extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-        ManagerService.register(
+      ManagerService.register(
         this.state.username,
         this.state.email,
         this.state.password,
-          this.state.cpassword
+        this.state.cpassword
 
       ).then(
         response => {
@@ -142,105 +142,109 @@ export default class ManagerRegister extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar />
         <div className="loginbackground43">
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-              src="https://img.freepik.com/premium-vector/illustration-vector-graphic-cartoon-character-performance-standards-project-management-certification_516790-1206.jpg?w=2000"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+          <div className="col-md-12">
+            <div className="card card-container">
+              <img
+                src="https://t4.ftcdn.net/jpg/01/65/26/41/360_F_165264129_BwD6TkuMqxHPbDiqR5lU2OSWFdqRkv3l.webp"
+                alt="profile-img"
+                className="profile-img-card"
+              />
 
-          <Form
-            onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div>
-                <div className="form-group">
-                  <label htmlFor="username">Managername</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[vusername]}
-                  />
-                </div>
+              <Form
+                onSubmit={this.handleRegister}
+                ref={c => {
+                  this.form = c;
+                }}
+              >
+                {!this.state.successful && (
+                  <div>
+                    <div className="form-group">
+                      <label htmlFor="username">Managername</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="username"
+                        placeholder="Username"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                        validations={[vusername]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">ManagerEmail</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[email]}
-                  />
-                </div>
+                    <div className="form-group">
+                      <label htmlFor="email">ManagerEmail</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        placeholder="Email"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                        validations={[email]}
+                        
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[vpassword]}
-                  />
-                </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Confirm Password</label>
-                    <Input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      placeholder="Confirm Password"
-                      value={this.state.cpassword}
-                      onChange={this.onChangeCPassword}
-                      validations={[Cpassword]}
-                    />
+                    <div className="form-group">
+                      <label htmlFor="password">Password</label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                        validations={[vpassword]}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="password">Confirm Password</label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        placeholder="Confirm Password"
+                        value={this.state.cpassword}
+                        onChange={this.onChangeCPassword}
+                        validations={[Cpassword]}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <button className="btn btn-primary btn-block">Sign Up</button>
+                    </div>
                   </div>
+                )}
 
-                <div className="form-group">
-                    <button className="btn btn-primary btn-block">Sign Up</button>
-                </div>
-              </div>
-            )}
-
-            {this.state.message && (
-              <div className="form-group">
-                <div
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+                {this.state.message && (
+                  <div className="form-group">
+                    <div
+                      className={
+                        this.state.successful
+                          ? "alert alert-success"
+                          : "alert alert-danger"
+                      }
+                      role="alert"
+                    >
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+                <CheckButton
+                  style={{ display: "none" }}
+                  ref={c => {
+                    this.checkBtn = c;
+                  }}
+                />
+                <span>
+                  Already have an account ? <Link to="/Managerlogin">Login.</Link>
+                </span>
+              </Form>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
       </div>
     );
   }

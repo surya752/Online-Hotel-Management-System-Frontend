@@ -5,21 +5,22 @@ import CheckButton from "react-validation/build/button";
 import "../components/loginbackground.css";
 import ManagerService from "../services/Manager.Service";
 import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+// const required = value => {
+//   if (!value) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         This field is required!
+//       </div>
+//     );
+//   }
+// };
 const vusername = value => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
-       Username is not required!
+        Username is not required!
       </div>
     );
   }
@@ -72,9 +73,9 @@ export default class Managerlogin extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-        ManagerService.login(this.state.username, this.state.password).then(
+      ManagerService.login(this.state.username, this.state.password).then(
         () => {
-            this.props.history.push("/MListEmployeeComponent");
+          this.props.history.push("/MListEmployeeComponent");
           window.location.reload();
         },
         error => {
@@ -101,77 +102,80 @@ export default class Managerlogin extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar />
         <div className="loginbackground">
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-              src="https://img.freepik.com/premium-vector/illustration-vector-graphic-cartoon-character-performance-standards-project-management-certification_516790-1206.jpg?w=2000"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
-          <Form
-            onSubmit={this.handleLogin}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            <div className="form-group">
-              <label htmlFor="username">Managername</label>
-              <Input
-                type="text"
-                className="form-control"
-                name="username"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                validations={[vusername]}
+          <div className="col-md-12">
+            <div className="card card-container">
+              <img
+                 src="https://t4.ftcdn.net/jpg/01/65/26/41/360_F_165264129_BwD6TkuMqxHPbDiqR5lU2OSWFdqRkv3l.webp"
+                alt="profile-img"
+                className="profile-img-card"
               />
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                validations={[vpassword]}
-              />
-            </div>
-
-            <div className="form-group">
-              <button
-                  className="btn btn-primary btn-block"
-                disabled={this.state.loading}
+              <Form
+                onSubmit={this.handleLogin}
+                ref={c => {
+                  this.form = c;
+                }}
               >
-                {this.state.loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-            </div>
-
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {this.state.message}
+                <div className="form-group">
+                  <label htmlFor="username">Managername</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    placeholder="Username"
+                    value={this.state.username}
+                    onChange={this.onChangeUsername}
+                    validations={[vusername]}
+                  />
                 </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
+                    validations={[vpassword]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <button
+                    className="btn btn-primary btn-block"
+                    disabled={this.state.loading}
+                  >
+                    {this.state.loading && (
+                      <span className="spinner-border spinner-border-sm"></span>
+                    )}
+                    <span>Login</span>
+                  </button>
+                </div>
+
+                {this.state.message && (
+                  <div className="form-group">
+                    <div className="alert alert-danger" role="alert">
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+                <CheckButton
+                  style={{ display: "none" }}
+                  ref={c => {
+                    this.checkBtn = c;
+                  }}
+                />
+                <span>
+                  Don't have an account ? <Link to="/Managerregister">Create Account</Link>
+                </span>
+              </Form>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
       </div>
     );
   }

@@ -120,7 +120,7 @@ img {
     }
 }
 
-@media(min-width: 1370px) {
+@media(min-width: 1000px) {
     .rooms-container {
         flex-direction: column;
     }
@@ -137,6 +137,7 @@ img {
 
     .room-image img {
         height: 100%;
+        width: 100%;
     }
 
     .room-text {
@@ -206,7 +207,7 @@ img {
     }
 }
 
-@media(min-width: 1370px) {
+@media(min-width: 1070px) {
     .customers-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

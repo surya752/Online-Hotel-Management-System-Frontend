@@ -14,7 +14,7 @@ const MCreateEmployeeComponent = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const initialValues = { empName: "", email: "", salary: "", empAddress: "", occupation: "" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const [formValues] = useState(initialValues);
     const history = useHistory();
     const { id } = useParams();
 
@@ -46,7 +46,7 @@ const MCreateEmployeeComponent = () => {
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [id]) //7
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -58,7 +58,7 @@ const MCreateEmployeeComponent = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log("success");
         }
-    }, [formErrors]);
+    }, [formErrors,isSubmit]); //15
 
     const validate = (employee) => {
         const errors = {};
@@ -162,9 +162,9 @@ const MCreateEmployeeComponent = () => {
                                         value={occupation} onChange={(e) => setOccupation(e.target.value)} />
                                     <p>{formErrors.occupation}</p>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary" onClick={(e) => saveOrUpdateemployee(e)}>Submit</button>
-                                    <Link to="/MListEmployeeComponent" class="btn btn-danger">cancel</Link>
+                                <div className="col-12">
+                                    <button className="btn btn-primary" onClick={(e) => saveOrUpdateemployee(e)}>Submit</button>
+                                    <Link to="/MListEmployeeComponent" className="btn btn-danger">cancel</Link>
                                 </div>
                             </form>
                         </div>

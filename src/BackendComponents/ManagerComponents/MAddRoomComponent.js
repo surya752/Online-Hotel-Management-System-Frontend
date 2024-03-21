@@ -13,7 +13,7 @@ export const MAddRoomComponents = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const initialValues = { roomNo: "", roomType: "", isOccupied: "", checkIn: "", checkOut: "" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const [formValues] = useState(initialValues);
     const history = useHistory();
     const { id } = useParams();
 
@@ -53,7 +53,7 @@ export const MAddRoomComponents = () => {
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [id]) //12
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -64,10 +64,9 @@ export const MAddRoomComponents = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log("success");
         }
-    }, [formErrors]);
+    }, [formErrors, isSubmit]); //12
     const validate = (room) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const name_regex = /^[a-zA-Z ]{2,30}$/i;
         if (!room.roomNo) {
             errors.roomNo = "RoomNo is required!";
@@ -90,7 +89,7 @@ export const MAddRoomComponents = () => {
         else if (!name_regex.test(room.roomCost.length > 0)) {
             errors.roomCost = "This is not a valid RoomCost format!";
         }
-       
+
         return errors;
     };
     const title = () => {

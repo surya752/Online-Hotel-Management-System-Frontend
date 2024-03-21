@@ -1,21 +1,21 @@
-import React, {useState, useEffect} from 'react'
-import {Link, useHistory, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory, useParams } from 'react-router-dom';
 import GuestService from "../../BackendService/OwnerService/GuestService"
 
 export const AddGuestComponents = () => {
 
-    const [name,setName]=useState("")
-    const [roomNo,setRoomNo]=useState("")
-    const [phoneNo,setPhoneNo]=useState("")
-    const [email,setEmail]=useState("")
-    const [gender,setGender]=useState("")
-    const [address,setAddress]=useState("")
+    const [name, setName] = useState("")
+    const [roomNo, setRoomNo] = useState("")
+    const [phoneNo, setPhoneNo] = useState("")
+    const [email, setEmail] = useState("")
+    const [gender, setGender] = useState("")
+    const [address, setAddress] = useState("")
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const initialValues = { name: "", roomNo: "", phoneNo: "", email: "", gender: "", address: "" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const [formValues] = useState(initialValues);
     const history = useHistory();
-    const {id} = useParams();
+    const { id } = useParams();
 
     // const required = (value) => {
     //     if (!value) {
@@ -31,11 +31,11 @@ export const AddGuestComponents = () => {
     const saveOrUpdateGuest = (e) => {
         e.preventDefault();
 
-        const guest = {name, roomNo, phoneNo,email,gender,address}
+        const guest = { name, roomNo, phoneNo, email, gender, address }
         setFormErrors(validate(guest));
         setIsSubmit(true);
 
-        if(id){
+        if (id) {
             GuestService.updateGuest(id, guest).then((response) => {
                 // alert("are u sure to make this changes")
                 history.push('/ListGuestComponent')
@@ -43,23 +43,23 @@ export const AddGuestComponents = () => {
                 console.log(error)
             })
 
-        }else{
-            GuestService.createGuest(guest).then((response) =>{
-                
+        } else {
+            GuestService.createGuest(guest).then((response) => {
+
 
                 console.log(response.data)
-    
+
                 history.push('/ListGuestComponent');
-    
+
             }).catch(error => {
                 console.log(error)
             })
         }
-        
+
     }
     useEffect(() => {
 
-        GuestService.getGuestById(id).then((response) =>{
+        GuestService.getGuestById(id).then((response) => {
             setName(response.data.name)
             setRoomNo(response.data.roomNo)
             setPhoneNo(response.data.phoneNo)
@@ -69,7 +69,7 @@ export const AddGuestComponents = () => {
         }).catch(error => {
             console.log(error)
         })
-    }, [])
+    }, [id]) //5
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -80,10 +80,9 @@ export const AddGuestComponents = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log("success");
         }
-    }, [formErrors]);
+    }, [formErrors ,isSubmit]); //12
     const validate = (guest) => {
         const errors = {};
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const name_regex = /^[a-zA-Z ]{2,30}$/i;
         if (!guest.name) {
             errors.name = "Name is required!";
@@ -115,128 +114,127 @@ export const AddGuestComponents = () => {
         if (!guest.address) {
             errors.address = "Address is required!";
         }
-       
+
 
         return errors;
     };
     const title = () => {
 
-        if(id){
-            return <h2 className = "text-center">Update Guest</h2>
-        }else{
-            return <h2 className = "text-center">Add Guest</h2>
+        if (id) {
+            return <h2 className="text-center">Update Guest</h2>
+        } else {
+            return <h2 className="text-center">Add Guest</h2>
         }
     }
     return (
         <div>
-               <br /><br />
-               <div className = "container">
-                    <div className = "row">
-                        <div className = "card col-md-6 offset-md-3 offset-md-3">
-                           {
-                               title()
-                           }
-                            <div className = "card-body">
+            <br /><br />
+            <div className="container">
+                <div className="row">
+                    <div className="card col-md-6 offset-md-3 offset-md-3">
+                        {
+                            title()
+                        }
+                        <div className="card-body">
                             <form onSubmit={handleSubmit}>
-                                    <div className = "form-group mb-2">
-                                        <label className = "form-label"> Guest Name :</label>
-                                        <input
-                                            type = "text"
-                                            placeholder = "Enter  name"
-                                            name = "Guest Name"
-                                            className = "form-control"
-                                            value = {name}
-                                            // validations={[required]}
-                                            onChange = {(e) => setName(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label"> Guest Name :</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter  name"
+                                        name="Guest Name"
+                                        className="form-control"
+                                        value={name}
+                                        // validations={[required]}
+                                        onChange={(e) => setName(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
                                 <p>{formErrors.name}</p>
-                                    
-    
-                                    <div className = "form-group mb-2">
-                                        <label className = "form-label"> RoomNo :</label>
-                                        <input
-                                            type = "number"
-                                            placeholder = "Enter RoomNo"
-                                            name = "RoomNo"
-                                            className = "form-control"
-                                            value = {roomNo}
-                                            
-                                            onChange = {(e) => setRoomNo(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
+
+
+                                <div className="form-group mb-2">
+                                    <label className="form-label"> RoomNo :</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter RoomNo"
+                                        name="RoomNo"
+                                        className="form-control"
+                                        value={roomNo}
+
+                                        onChange={(e) => setRoomNo(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
                                 <p>{formErrors.roomNo}</p>
-                                    <div className = "form-group mb-2">
-                                        <label className = "form-label"> phoneNo :</label>
-                                        <input
-                                            type = "number"
-                                            placeholder = "Enter phoneNo"
-                                            name = "phoneNo"
-                                            className = "form-control"
-                                            value = {phoneNo}
-                                           
-                                            onChange = {(e) => setPhoneNo(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label"> phoneNo :</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Enter phoneNo"
+                                        name="phoneNo"
+                                        className="form-control"
+                                        value={phoneNo}
+
+                                        onChange={(e) => setPhoneNo(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
                                 <p>{formErrors.phoneNo}</p>
-                                    <div className = "form-group mb-2">
-                                        <label className = "form-label"> Email :</label>
-                                        <input
-                                            type = "email"
-                                            placeholder = "Enter Email"
-                                            name = "Email"
-                                            className = "form-control"
-                                            value = {email}
-                                            
-                                            onChange = {(e) => setEmail(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label"> Email :</label>
+                                    <input
+                                        type="email"
+                                        placeholder="Enter Email"
+                                        name="Email"
+                                        className="form-control"
+                                        value={email}
+
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
                                 <p>{formErrors.email}</p>
-                                    <div className = "form-group mb-2">
-                                        <label className = "form-label"> Gender:</label>
-                                        <input
-                                            type = "text"
-                                            placeholder = "Gender"
-                                            name = "Gender"
-                                            className = "form-control"
-                                            value = {gender}
-                                           
-                                            onChange = {(e) => setGender(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label"> Gender:</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Gender"
+                                        name="Gender"
+                                        className="form-control"
+                                        value={gender}
+
+                                        onChange={(e) => setGender(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
                                 <p>{formErrors.gender}</p>
-                                    <div className = "form-group mb-2">
-                                        <label className = "form-label"> Address:</label>
-                                        <input
-                                            type = "text"
-                                            placeholder = "Address"
-                                            name = "address"
-                                            className = "form-control"
-                                            value = {address}
-                                            onChange = {(e) => setAddress(e.target.value)}
-                                        >
-                                        </input>
-                                    </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label"> Address:</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Address"
+                                        name="address"
+                                        className="form-control"
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
                                 <p>{formErrors.address}</p>
-    
-                                    <button className = "btn btn-success" onClick = {(e) => saveOrUpdateGuest(e)} >Submit </button>
-                                    <Link to="/ListGuestComponent" className="btn btn-danger"> Cancel </Link>
-                                </form>
-    
-                            </div>
+
+                                <button className="btn btn-success" onClick={(e) => saveOrUpdateGuest(e)} >Submit </button>
+                                <Link to="/ListGuestComponent" className="btn btn-danger"> Cancel </Link>
+                            </form>
+
                         </div>
                     </div>
-    
-               </div>
-    
+                </div>
+
             </div>
-        )
-    }
-    
-    export default AddGuestComponents
-    
+
+        </div>
+    )
+}
+
+export default AddGuestComponents
