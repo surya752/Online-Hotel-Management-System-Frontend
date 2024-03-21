@@ -9,84 +9,84 @@ class RListBillComponents extends Component {
         super(props)
 
         this.state = {
-                bills: []
+            bills: []
         }
         this.createBill = this.createBill.bind(this);
-        
+
     }
 
-    
-    viewBill(billNo){
+
+    viewBill(billNo) {
         this.props.history.push(`/view-bill/${billNo}`);
     }
-   
 
-    componentDidMount(){
+
+    componentDidMount() {
         BillService.getAllBill().then((res) => {
-            this.setState({ bills: res.data});
+            this.setState({ bills: res.data });
         });
     }
 
-    createBill(){
+    createBill() {
         this.props.history.push('/add-bill/_add');
     }
-    
+
 
     render() {
         return (
-            
-            
+
+
             <div>
                 <ReceptionDashboard />
                 <div className="container">
-                 <h2 className="text-center">bill List</h2>
-                 <div className = "row">
-                    <button className="btn btn-primary" onClick={this.createBill}> Add Bill</button>
-                 </div>
-                 <br></br>
-                 <div className = "row">
-                    <table className= "table table-striped table-bordered">
+                    <h2 className="text-center">bill List</h2>
+                    <div className="row">
+                        <button className="btn btn-primary" onClick={this.createBill}> Add Bill</button>
+                    </div>
+                    <br></br>
+                    <div className="row">
+                        <table className="table table-striped table-bordered">
 
                             <thead>
-                               
-                                <th> BILL_Id</th>
-                                    <th> roomNo</th>
-                                    <th> price</th>
-                                    <th> taxes</th>
-                                    <th> date</th>
-                                    <th>service</th>
-                                    <th>total</th>
-                                    <th> Action</th>
 
-                               
+                                <th> BILL_Id</th>
+                                <th> roomNo</th>
+                                <th> price</th>
+                                <th> taxes</th>
+                                <th> date</th>
+                                <th>service</th>
+                                <th>total</th>
+                                <th> Action</th>
+
+
                             </thead>
                             <tbody>
                                 {
                                     this.state.bills.map(
-                                        bill => 
-                                        <tr key = {bill.billNo}>
-                                            <td> { bill.billNo} </td>
-                                             <td> { bill.roomNo} </td>   
-                                             <td> {bill.price}</td>
-                                             <td> {bill.taxes}</td>
-                                             <td> {bill.date}</td>
-                                             <td> {bill.service}</td>
-                                             <td> {bill.total}</td>
-                                             
-                                             <td>
-                                               
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewBill(bill.billNo)} className="btn btn-info">View </button>
-                                             </td>
-                                        </tr>
+                                        bill =>
+                                            <tr key={bill.billNo}>
+                                                <td> {bill.billNo} </td>
+                                                <td> {bill.roomNo} </td>
+                                                <td> {bill.price}</td>
+                                                <td> {bill.taxes}</td>
+                                                <td> {bill.date}</td>
+                                                <td> {bill.service}</td>
+                                                <td> {bill.total}</td>
+
+                                                <td>
+
+                                                    <button style={{ marginLeft: "10px" }} onClick={() => this.viewBill(bill.billNo)} className="btn btn-info">View </button>
+                                                </td>
+                                            </tr>
                                     )
                                 }
                             </tbody>
                         </table>
 
-                 </div>
+                    </div>
 
+                </div>
             </div>
-        </div>
         )
     }
 }

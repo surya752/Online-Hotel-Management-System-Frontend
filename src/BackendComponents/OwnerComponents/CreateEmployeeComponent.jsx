@@ -16,7 +16,7 @@ const CreateEmployeeComponent = () => {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const initialValues = { empName: "", email: "", salary: "", empAddress: "", occupation: "" };
-    const [formValues, setFormValues] = useState(initialValues);
+    const [formValues] = useState(initialValues);
     const history = useHistory();
     const { id } = useParams();
 
@@ -52,7 +52,7 @@ const CreateEmployeeComponent = () => {
             console.log(error)
         })
 
-    }, [])
+    }, [id]) //3
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
@@ -64,7 +64,7 @@ const CreateEmployeeComponent = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log("success");
         }
-    }, [formErrors]);
+    }, [formErrors,isSubmit]);//10
 
     const validate = (employee) => {
         const errors = {};
@@ -176,9 +176,9 @@ const CreateEmployeeComponent = () => {
                                         value={occupation} onChange={(e) => setOccupation(e.target.value)} />
                                     <p>{formErrors.occupation}</p>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary" onClick={(e) => saveOrUpdateemployee(e)}>Submit</button>
-                                    <Link to="/ListEmployeeComponent" class="btn btn-danger">cancel</Link>
+                                <div className="col-12">
+                                    <button className="btn btn-primary" onClick={(e) => saveOrUpdateemployee(e)}>Submit</button>
+                                    <Link to="/ListEmployeeComponent" className="btn btn-danger">cancel</Link>
                                 </div>
                             </form>
                         </div>

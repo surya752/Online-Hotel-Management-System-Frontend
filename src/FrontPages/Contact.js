@@ -1,130 +1,101 @@
+import { Container, Row, Col } from "react-bootstrap";
+import { contactConfig } from "../FrontPages/contactConfig";
+import Navbar from "../Navbar";
+import "../FrontPages/Contect.css";
+import React, { useRef } from 'react';
 import emailjs from 'emailjs-com';
-import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar';
-import swal from 'sweetalert';
 
+export default function Contact() {
+  const form = useRef();
 
-  function Contact() {
-  const [to_name, setTo_name] = useState("");
-  const [from_name, setFrom_name] = useState("");
-  const [message, setMessage] = useState("");
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
-  const initialValues = { to_name: "", from_name: "", message: "" };
-  const [formValues, setFormValues] = useState(initialValues);
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-
-  const submitInfo = (event) => {
-    event.preventDefault();
-    console.log(to_name + from_name + message);
-
-    swal({
-      title: "Send Successfull!",
-      icon: "success",
-      button: "Ok!",
-    });
-    const emailContent = { to_name, from_name, message }
-    setFormErrors(validate(emailContent));
-    setIsSubmit(true);
-  }
-  const emailContent = {
-    to_name: to_name,
-    from_name: from_name,
-    message: message,
-  };
-  // emailjs.send('service_33v86pq', 'template_sydvpra', emailContent, 'DN9jSXYFTC5C8nI9U')
-  //   .then((result) => {
-  //     console.log(result.text);
-  //   }, (error) => {
-  //     console.log(error.text);
-  //   });
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log("success");
-    }
-  }, [formErrors]);
-  const validate = (emailContent) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const name_regex = /^[a-zA-Z ]{2,30}$/i;
-    if (!emailContent.to_name) {
-      errors.to_name = "UserName is required!";
-    }
-    if (!emailContent.from_name) {
-      errors.from_name = "Email is required!";
-    }
-
-    if (!emailContent.message) {
-      errors.message = " Message is required!";
-    }
-    else if (!name_regex.test(emailContent.message)) {
-      errors.message = " Message is not a valid!";
-    }
-
-    return errors;
+    emailjs.sendForm('service_issd8kp', 'template_6rx62uk', form.current, 'G7JfbJ-uX1y1PDKGT')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset()
   };
   return (
-    <from onSubmit={handleSubmit}>
-      <Navbar />
-      <div className="container border"
-        style={{
-          marginTop: "50px",
-          width: "50%",
-          backgroundImage: `url('https://thumbs.dreamstime.com/b/hacker-mail-icon-neon-style-can-be-used-web-logo-mobile-app-ui-ux-black-background-147401083.jpg')`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}>
-        <h1 style={{ marginTop: '25px', color: 'white' }}>Contact Me</h1>
-        <div className="row" style={{ margin: "25px 85px 75px 100px", color: 'white' }}
-
-        >
-          <label style={{ marginTop: '25px', color: 'white' }}><b>UserName</b></label>
-          <input
-            type="text"
-            name="name"
-            className="form-control"
-            placeholder="Username"
-            value={to_name}
-            onChange={(event) => { setTo_name(event.target.value) }} />
-          <p style={{ marginTop: '25px', color: 'red' }}>{formErrors.to_name}</p>
-
-          <label style={{ marginTop: '25px', color: 'white' }}><b>Email</b></label>
-          <input
-            type="text"
-            name="user_email"
-            className="form-control"
-            placeholder="Email"
-            value={from_name}
-            onChange={(event) => { setFrom_name(event.target.value) }} />
-
-          <p style={{ marginTop: '25px', color: 'red' }}>{formErrors.from_name}</p>
-
-          <label style={{ marginTop: '25px', color: 'bwhite' }}><b>Message</b></label>
-          <textarea
-            type="text"
-            data-testid="para"
-            name="message" rows="4"
-            className="form-control"
-            placeholder="Message"
-            value={message}
-            onChange={(event) => { setMessage(event.target.value) }} />
-          <p style={{ marginTop: '25px', color: 'red' }}>{formErrors.message}</p>
-
-          <button
-            onClick={(event) => submitInfo(event)}
-            className=" btn btn-primary "
-            style={{ marginTop: '30px' }} >Submit </button>
-        </div>
-      </div>
-    </from>
-  )
-};
-export default Contact;
+    <>
+    <Navbar/>
+      <Container className="container">
+     
+        <Row className="mb-5 mt-3">
+          <Col lg="8">
+            <h1 className="display-4 mb-4">Contact Me</h1>
+            <hr className="t_border my-4 ml-0 text-left" />
+          </Col>
+        </Row>
+        <form ref={form} onSubmit={sendEmail}>
+        <Row className="sec_sp">
+          <Col lg="5" className="mb-5">
+            <h3 className="color_sec py-4">Get In Touch</h3>
+            <address>
+              <strong>Email:</strong>{" "}
+              <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
+                {contactConfig.YOUR_EMAIL}
+              </a>
+              <br />
+              <br />
+              {contactConfig.hasOwnProperty("YOUR_FONE") ? (
+                <p>
+                  <strong>Phone:</strong> {contactConfig.YOUR_FONE}
+                </p>
+              ) : (
+                ""
+              )}
+            </address>
+            <p>{contactConfig.description}</p>
+          </Col>
+          <Col lg="7" className="d-flex align-items-center">
+            <form  className="contact__form w-100">
+              <Row>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Name" 
+                    type="text"
+                    required 
+                  />
+                </Col>
+                <Col lg="6" className="form-group">
+                  <input
+                    className="form-control rounded-0"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    type="email" 
+                    required 
+                  />
+                </Col>
+              </Row>
+              <textarea
+                className="form-control rounded-0"
+                id="message"
+                name="message"
+                placeholder="Message"
+                rows="5" 
+                required
+              ></textarea>
+              <br />
+              <Row>
+                <Col lg="12" className="form-group">
+                  <button className="btn ac_btn" type="submit"> 
+                  Send
+                  </button>
+                </Col>
+              </Row>
+            </form>
+          </Col>
+        </Row>
+        </form>
+      </Container>
+      </>
+  );
+}

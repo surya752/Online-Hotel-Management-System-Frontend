@@ -52,7 +52,7 @@ function Navbar() {
       <nav ref={navRef}>
         <Link to={"/"} className="nav-link active ">Home</Link>
         <Link to={"/contact"} className="nav-link">Contact</Link>
-        <Link to={"/Button"} className="nav-link"> Login/Register </Link>
+        <Link to={"/Button"} className="nav-link"> Login</Link>
         <button
           className="nav-btn nav-close-btn"
           onClick={showNavbar}>

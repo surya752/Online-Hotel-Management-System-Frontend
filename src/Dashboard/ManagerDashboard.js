@@ -1,8 +1,5 @@
-import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom";
-
-import ManagerService from "../services/Manager.Service";
-import eventBus from "../common/EventBus"
+import React from "react";
+import { Link } from "react-router-dom";
 import "../Navbar.css";
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -14,10 +11,10 @@ function ManagerDashboard() {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-    return (
-        
-  < header >
-      <h3> Hotel Management System</h3>
+  return (
+
+    < header >
+      <span> <h5><b>Hotel*Management</b></h5></span>
       <nav ref={navRef}>
         <Link to={"/MListEmployeeComponent"} className="nav-link active "> Employee</Link>
         <Link to={"/MListInventoryReportsComponent"} className="nav-link"> InventoryReports</Link>
@@ -30,11 +27,11 @@ function ManagerDashboard() {
           <FaTimes />
         </button>
       </nav>
-      <button className="nav-btn" 
-          onClick={showNavbar}>
+      <button className="nav-btn"
+        onClick={showNavbar}>
         <FaBars />
       </button>
     </header >
-    )
- }
+  )
+}
 export default ManagerDashboard

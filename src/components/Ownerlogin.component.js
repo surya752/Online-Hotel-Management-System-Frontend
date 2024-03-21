@@ -5,15 +5,17 @@ import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 import Navbar from "../Navbar";
 import "../components/loginbackground.css";
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+import { Link } from "react-router-dom";
+
+// const required = value => {
+//   if (!value) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         This field is required!
+//       </div>
+//     );
+//   }
+// };
 const vusername = value => {
   if (value.length < 3 || value.length > 20) {
     return (
@@ -100,78 +102,81 @@ export default class Ownerlogin extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
+        <Navbar />
         <div className="loginbackground">
-         
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-              src="https://us.123rf.com/450wm/sergeypykhonin/sergeypykhonin1603/sergeypykhonin160300018/53583139-businessman-working-on-computer-isolated-on-white-background-vector-illustration.jpg?ver=6"
-            alt="profile-img"
-            className="profile-img-card"
-          />
 
-          <Form
-            onSubmit={this.handleLogin}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            <div className="form-group">
-              <label htmlFor="username">Ownername</label>
-              <Input
-                type="text"
-                className="form-control"
-                name="username"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                validations={[vusername]}
+          <div className="col-md-12">
+            <div className="card card-container">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxUWihTt0WdCy3o49Z548Vu5oNKkBMH_uNzQ&usqp=CAU"
+                alt="profile-img"
+                className="profile-img-card"
               />
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Input
-                type="password"
-                className="form-control"
-                name="password"
-               placeholder="Password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                validations={[vpassword]}
-              />
-            </div>
-
-            <div className="form-group">
-              <button
-                className="btn btn-primary btn-block"
-                disabled={this.state.loading}
+              <Form
+                onSubmit={this.handleLogin}
+                ref={c => {
+                  this.form = c;
+                }}
               >
-                {this.state.loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-            </div>
-
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {this.state.message}
+                <div className="form-group">
+                  <label htmlFor="username">Ownername</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    placeholder="Username"
+                    value={this.state.username}
+                    onChange={this.onChangeUsername}
+                    validations={[vusername]}
+                  />
                 </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <Input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.onChangePassword}
+                    validations={[vpassword]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <button
+                    className="btn btn-primary btn-block"
+                    disabled={this.state.loading}
+                  >
+                    {this.state.loading && (
+                      <span className="spinner-border spinner-border-sm"></span>
+                    )}
+                    <span>Login</span>
+                  </button>
+                </div>
+
+                {this.state.message && (
+                  <div className="form-group">
+                    <div className="alert alert-danger" role="alert">
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+                <CheckButton
+                  style={{ display: "none" }}
+                  ref={c => {
+                    this.checkBtn = c;
+                  }}
+                />
+                <span>
+                  Don't have an account ? <Link to="/ownerregister">Create Account</Link>
+                </span>
+              </Form>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
       </div>
     );
   }

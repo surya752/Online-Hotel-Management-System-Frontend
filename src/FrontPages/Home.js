@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import '../FrontPages/Home.css'
 import Bed1 from "../Images/bed1.jpg";
 import Bed2 from "../Images/bed2.jpg";
-import Bed3 from "../Images/bed3.jpg";
-import Logo from "../Images/logo.png";
-
+import Customer1 from"../Images/customer1.jpg";
+import Customer2 from"../Images/customer2.jpg";
+import Customer3 from"../Images/customer3.jpg";
 
 function Home() {
   return (
@@ -15,10 +15,9 @@ function Home() {
 
         <section className="rooms sec-width" id="rooms">
           <div className="title">
-            <h2>rooms</h2>
+            <h2>Rooms</h2>
           </div>
           <div className="rooms-container">
-            {/* <!-- single room --> */}
             <article className="room">
               <div className="room-image">
                 <img src={Bed1} alt="room image" />
@@ -28,116 +27,37 @@ function Home() {
                 <ul>
                   <li>
                     <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
+                    These rooms are designed to provide a luxurious and indulgent experience for guests. 
                   </li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
-                <p className="rate">
-                  <span>Rs.5000.00 /</span> Per Night
+               <p>Luxury rooms are typically furnished with high-end furniture, plush bedding, and premium materials to enhance comfort and aesthetics.</p>
+               <p>You can often find state-of-the-art technology in luxury rooms, including large flat-screen TVs, high-speed internet access, and integrated entertainment systems.</p>
+                      <p className="rate">
+                  <span>Rs.8000.00 /</span> Per Night
                 </p>
               {/* <a href='/Button'> <button type="button" className="btn">Book now</button></a> */}
               </div>
             </article>
-            {/* <!-- end of single room -->
-        <!-- single room --> */}
             <article className="room">
               <div className="room-image">
                 <img src={Bed2} alt="room image" />
               </div>
               <div className="room-text">
-                <h3>Luxury Rooms</h3>
+                <h3>Guest Rooms</h3>
                 <ul>
                   <li>
                     <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
+                    It’s common for hotels to list their rooms based on how many people the room is equipped to handle. Here’s what you can expect when you see rooms labeled in this way.
                   </li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
-                <p className="rate">
-                  <span>Rs.5000.00/</span> Per Night
+            <p>Single room: these rooms are assigned to one person or a couple. It may have one or more beds, but the size of the bed depends on the hotel. Some single rooms have a twin bed, most will have a double, few will have a queen bed.</p>
+            <p>Quad room: a quad room is set up for four people to stay comfortably. This means the room will have two double beds. Some, however, may be set up dormitory-style with bunks or twins, so check with the property to make sure.</p>
+               <p className="rate">
+                  <span>Rs.3000.00/</span> Per Night
                 </p>
               {/* <a href='/Button'> <button type="button" className="btn">Book now</button></a> */}
               </div>
-            </article>
-            {/* <!-- end of single room -->
-             <!-- single room --> */}
-            <article className="room">
-              <div className="room-image">
-                <img src={Bed2} alt="room image" />
-              </div>
-              <div className="room-text">
-                <h3>Luxury Rooms</h3>
-                <ul>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
-                <p className="rate">
-                  <span>Rs.5000.00/</span> Per Night
-                </p>
-              {/* <a href='/Button'> <button type="button" className="btn">Book now</button></a> */}
-              </div>
-            </article>
-            {/* <!-- end of single room -->
-        <!-- single room --> */}
-            <article className="room">
-              <div className="room-image">
-                <img src={Bed3} alt="room image" />
-              </div>
-              <div className="room-text">
-                <h3>Luxury Rooms</h3>
-                <ul>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                  <li>
-                    <i className="fas fa-arrow-alt-circle-right"></i>
-                    Lorem ipsum dolor sit amet.
-                  </li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus exercitationem repellendus maxime ullam tempore architecto provident unde expedita quam beatae, dolore eligendi molestias sint tenetur incidunt voluptas. Unde corporis qui iusto vitae. Aut nesciunt id iste, cum esse commodi nemo?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla corporis quasi officiis cumque, fugiat nostrum sunt, tempora animi dicta laborum beatae ratione doloremque. Delectus odio sit eius labore, atque quo?</p>
-                <p className="rate">
-                  <span>Rs.5000.00 /</span> Per Night
-                </p>
-              {/* <a href='/Button'> <button type="button" className="btn">Book now</button></a> */}
-              </div>
-            </article>
-            {/* <!-- end of single room --> */}
+        </article>
           </div>
         </section>
 
@@ -148,7 +68,7 @@ function Home() {
               <h2>customers</h2>
             </div>
             <div className="customers-container">
-              {/* <!-- single customer --> */}
+            
               <div className="customer">
                 <div className="rating">
                   <span><i className="fas fa-star"></i></span>
@@ -158,12 +78,11 @@ function Home() {
                   <span><i className="far fa-star"></i></span>
                 </div>
                 <h3>We Loved it</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
-                <img src={Logo} alt="customer image" />
-                <span>Customer Name, Country</span>
+                <p>It was great pleasure to spend my precious time in such a comfortable and friendly atmosphere.</p>
+                <img src={Customer1} alt="customer image" />
+                <span>Teja Rekhapalli, India</span>
               </div>
-              {/* <!-- end of single customer -->
-          <!-- single customer --> */}
+             
               <div className="customer">
                 <div className="rating">
                   <span><i className="fas fa-star"></i></span>
@@ -173,12 +92,10 @@ function Home() {
                   <span><i className="far fa-star"></i></span>
                 </div>
                 <h3>Comfortable Living</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
-                <img src={Logo} alt="customer image" />
-                <span>Customer Name, Country</span>
+                <p>Below you will find a collection of motivating, happy, and encouraging living room quotes, living room sayings, and living room proverbs.</p>
+                <img src={Customer2} alt="customer image" />
+                <span>Naveen Nammu, India</span>
               </div>
-              {/* <!-- end of single customer -->
-          <!-- single customer --> */}
               <div className="customer">
                 <div className="rating">
                   <span><i className="fas fa-star"></i></span>
@@ -188,56 +105,27 @@ function Home() {
                   <span><i className="far fa-star"></i></span>
                 </div>
                 <h3>Nice Place</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
-                <img src={Logo} alt="customer image" />
-                <span>Customer Name, Country</span>
+                <p>Very clean rooms, very good shower & bathroom. Very comfortable beds, very nice owners. Decoration of rooms & breakfast room nice. We would stay here again.</p>
+                <img src={Customer3} alt="customer image" />
+                <span>Prasad, India</span>
               </div>
-              {/* <!-- end of single customer --> 
-            <!-- single customer --> */}
-              <div className="customer">
-                <div className="rating">
-                  <span><i className="fas fa-star"></i></span>
-                  <span><i className="fas fa-star"></i></span>
-                  <span><i className="fas fa-star"></i></span>
-                  <span><i className="fas fa-star"></i></span>
-                  <span><i className="far fa-star"></i></span>
-                </div>
-                <h3>Nice Place</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat beatae veritatis provident eveniet praesentium veniam cum iusto distinctio esse, vero est autem, eius optio cupiditate?</p>
-                <img src={Logo} alt="customer image" />
-                <span>Customer Name, Country</span>
-              </div>
-              {/* <!-- end of single customer --> */}
+           
             </div>
           </div>
         </section>
-        {/* <!-- end of body content -->
-        
-
-    <!-- footer --> */}
         <div className="footer">
           <div className="footer-container">
             <div>
               <h2>About Us </h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sapiente mollitia doloribus provident? Eos quisquam aliquid vel dolorum, impedit culpa.</p>
-              {/* <ul className="social-icons">
-            <li className="flex">
-              <i className="fa fa-twitter fa-2x"></i>
-            </li>
-            <li className="flex">
-              <i className="fa fa-facebook fa-2x"></i>
-            </li>
-            <li className="flex">
-              <i className="fa fa-instagram fa-2x"></i>
-            </li>
-          </ul> */}
+              <p>A place that has rooms in which people can stay especially when they are traveling .</p>
+              <p>place that provides food, lodging, and other services for paying guests. check into a hotel.</p>
             </div>
 
             <div>
               <h2>Useful Links</h2>
               <a href="#">facebook</a>
               <a href="#">Rooms</a>
-              <a href="#">Subscription</a>
+              <a href="#">Subscription̥</a>
               <a href="#">Gift Card</a>
             </div>
 

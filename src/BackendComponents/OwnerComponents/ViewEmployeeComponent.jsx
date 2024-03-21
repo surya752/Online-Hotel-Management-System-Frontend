@@ -16,48 +16,48 @@ class ViewEmployeeComponent extends Component {
         }
     }
 
-    componentDidMount(){
-        EmployeeService.getEmployeeById(this.state.id).then( res => {
-            this.setState({employee: res.data});
+    componentDidMount() {
+        EmployeeService.getEmployeeById(this.state.id).then(res => {
+            this.setState({ employee: res.data });
         })
     }
 
     render() {
         return (
             <div>
-                <OwnerDashboard/>
+                <OwnerDashboard />
                 <br></br>
-                <div ref={el=>(this.componentRef=el)}>
-                <div className = "card col-md-6 offset-md-3" >
-                    <h3 className = "text-center"> View Employee Details</h3>
-                    <div className = "card-body">
-                        <div className = "row">
-                            <label className='amma'> Emp_Name    :           </label>
-                            <div> { this.state.employee.empName }</div>
+                <div ref={el => (this.componentRef = el)}>
+                    <div className="card col-md-6 offset-md-3" >
+                        <h3 className="text-center"> View Employee Details</h3>
+                        <div className="card-body">
+                            <div className="row">
+                                <label className='amma'> Emp_Name    :           </label>
+                                <div> {this.state.employee.empName}</div>
+                            </div>
+                            <div className="row">
+                                <label className='amma'> Email   :             </label>
+                                <div> {this.state.employee.email}</div>
+                            </div>
+                            <div className="row">
+                                <label className='amma'> Employee Salary  :      </label>
+                                <div> {this.state.employee.salary}</div>
+                            </div>
+                            <div className="row">
+                                <label className='amma'> Employee Address  :     </label>
+                                <div> {this.state.employee.empAddress}</div>
+                            </div>
+                            <div className="row">
+                                <label className='amma'> Occupation  :         </label>
+                                <div> {this.state.employee.occupation}</div>
+                            </div>
                         </div>
-                        <div className = "row">
-                            <label className='amma'> Email   :             </label>
-                            <div> { this.state.employee.email }</div>
-                        </div>
-                        <div className = "row">
-                            <label className='amma'> Employee Salary  :      </label>
-                            <div> { this.state.employee.salary }</div>
-                        </div>
-                        <div className = "row">
-                            <label className='amma'> Employee Address  :     </label>
-                            <div> { this.state.employee.empAddress }</div>
-                        </div>
-                        <div className = "row">
-                            <label className='amma'> Occupation  :         </label>
-                            <div> { this.state.employee.occupation }</div>
-                        </div>
-                    </div>
                     </div>
                 </div>
                 <div >
                     <ReactToPrint
                         trigger={() => {
-                            return  <button style={{marginLeft: "730px",}} className="btn btn-info">Print </button>
+                            return <button style={{ marginLeft: "730px", }} className="btn btn-info">Print </button>
                         }}
                         content={() => this.componentRef}
                         documentTitle='new document'

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import RoomService from '../../BackendService/ManagerService/RoomService'
 import ManagerDashboard from '../../Dashboard/ManagerDashboard'
@@ -51,7 +51,7 @@ const MListRoomComponents = () => {
                     </thead>
                     <tbody>
                         {
-                                room.filter(val => val.isOccupied.toLowerCase().includes(search.toLowerCase())).map(
+                            room.filter(val => val.isOccupied.toLowerCase().includes(search.toLowerCase())).map(
                                 room =>
                                     <tr key={room.id}>
                                         <td> {room.id} </td>

@@ -6,16 +6,17 @@ import { isEmail } from "validator";
 import "../components/loginbackground.css";
 import AuthService from "../services/auth.service";
 import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+// const required = value => {
+//   if (!value) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         This field is required!
+//       </div>
+//     );
+//   }
+// };
 
 const email = value => {
   if (!isEmail(value)) {
@@ -69,7 +70,7 @@ export default class Register extends Component {
       username: "",
       email: "",
       password: "",
-      cpassword:"",
+      cpassword: "",
       successful: false,
       message: ""
     };
@@ -144,104 +145,107 @@ export default class Register extends Component {
       <div>
         <Navbar />
         <div className="loginbackground43">
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-              src="https://us.123rf.com/450wm/sergeypykhonin/sergeypykhonin1603/sergeypykhonin160300018/53583139-businessman-working-on-computer-isolated-on-white-background-vector-illustration.jpg?ver=6"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+          <div className="col-md-12">
+            <div className="card card-container">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxUWihTt0WdCy3o49Z548Vu5oNKkBMH_uNzQ&usqp=CAU"
+                alt="profile-img"
+                className="profile-img-card"
+              />
 
-          <Form
-            onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div>
-                <div className="form-group">
-                  <label htmlFor="username">Ownername</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    placeholder="Username"
-                    value={this.state.username}
-                    onChange={this.onChangeUsername}
-                    validations={[vusername]}
-                  />
-                </div>
+              <Form
+                onSubmit={this.handleRegister}
+                ref={c => {
+                  this.form = c;
+                }}
+              >
+                {!this.state.successful && (
+                  <div>
+                    <div className="form-group">
+                      <label htmlFor="username">Ownername</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="username"
+                        placeholder="Username"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                        validations={[vusername]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">OwnerEmail</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                    validations={[ email]}
-                    // validations={[required, email]}
-                  />
-                </div>
+                    <div className="form-group">
+                      <label htmlFor="email">OwnerEmail</label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        placeholder="Email"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                        validations={[email]}
+                      // validations={[required, email]}
+                      />
+                    </div>
 
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.onChangePassword}
-                    validations={[vpassword]}
-                  />
-                </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Confirm Password</label>
-                    <Input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      placeholder="Confirm Password"
-                      value={this.state.cpassword}
-                      onChange={this.onChangeCPassword}
-                      validations={[Cpassword]}
-                    />
+                    <div className="form-group">
+                      <label htmlFor="password">Password</label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        placeholder="Password"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                        validations={[vpassword]}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="password">Confirm Password</label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        placeholder="Confirm Password"
+                        value={this.state.cpassword}
+                        onChange={this.onChangeCPassword}
+                        validations={[Cpassword]}
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <button className="btn btn-primary btn-block">Sign Up</button>
+                    </div>
                   </div>
+                )}
 
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
-                </div>
-              </div>
-            )}
-
-            {this.state.message && (
-              <div className="form-group">
-                <div
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
+                {this.state.message && (
+                  <div className="form-group">
+                    <div
+                      className={
+                        this.state.successful
+                          ? "alert alert-success"
+                          : "alert alert-danger"
+                      }
+                      role="alert"
+                    >
+                      {this.state.message}
+                    </div>
+                  </div>
+                )}
+                <CheckButton
+                  style={{ display: "none" }}
+                  ref={c => {
+                    this.checkBtn = c;
+                  }}
+                />
+                <span>
+                  Already have an account ? <Link to="/ownerlogin">Login.</Link>
+                </span>
+              </Form>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
       </div>
     );
   }
